@@ -48,6 +48,7 @@
 	"DMMADCCalibration_Off": 0,
 	"DMMSettleTime": 0.0001,
 	"DMMControlAction_Commit": 0,
+	"DMMVoltageFaultUpperLimit": 0.000050,
 	
 	"ApplicationNumberOfWeldChannels": 6
 }
