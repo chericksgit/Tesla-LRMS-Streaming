@@ -198,7 +198,7 @@ AddOutputFilter chunkFilter
 		</Item>
 		<Item Name="Build Specifications" Type="Build">
 			<Item Name="LRMS" Type="{CED73189-3D7D-4B2F-B6C9-EA03FBC59E14}">
-				<Property Name="IPK_lastBuiltPackage" Type="Str">lrms_1.0.0-10_x64.ipk</Property>
+				<Property Name="IPK_lastBuiltPackage" Type="Str">lrms_1.0.0-11_x64.ipk</Property>
 				<Property Name="IPK_startup.Restart" Type="Bool">true</Property>
 				<Property Name="IPK_startup.Target.Child" Type="Str">{76A079B7-E0D3-4BE0-ACA4-5D378303AD69}</Property>
 				<Property Name="IPK_startup.Target.Destination" Type="Str">root_0</Property>
@@ -206,7 +206,7 @@ AddOutputFilter chunkFilter
 				<Property Name="PKG_actions.Count" Type="Int">0</Property>
 				<Property Name="PKG_autoIncrementBuild" Type="Bool">true</Property>
 				<Property Name="PKG_autoSelectDeps" Type="Bool">false</Property>
-				<Property Name="PKG_buildNumber" Type="Int">11</Property>
+				<Property Name="PKG_buildNumber" Type="Int">12</Property>
 				<Property Name="PKG_buildSpecName" Type="Str">LRMS</Property>
 				<Property Name="PKG_dependencies.Count" Type="Int">0</Property>
 				<Property Name="PKG_description" Type="Str">This is the package for the LRMS software</Property>
