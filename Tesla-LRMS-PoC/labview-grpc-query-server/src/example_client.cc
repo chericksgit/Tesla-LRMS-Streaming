@@ -196,219 +196,75 @@ int main(int argc, char **argv)
     auto result = client.Query("Uptime");
     cout << "Server uptime: " << result << endl;
 
-    result = client.Query("SETCONF=SMUResourceName[[CONFPARAM]]=SMU");
-    cout << "Sent: SETCONF=SMUResourceName[[CONFPARAM]]=SMU, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUChannels[[CONFPARAM]]=0");
-    cout << "Sent: SETCONF=SMUChannels[[CONFPARAM]]=0, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUSourceMode[[CONFPARAM]]=1021");
-    cout << "Sent: SETCONF=SMUSourceMode[[CONFPARAM]]=1021, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUOutputFunction[[CONFPARAM]]=1007");
-    cout << "Sent: SETCONF=SMUOutputFunction[[CONFPARAM]]=1007, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUSourceTransientResponse[[CONFPARAM]]=1039");
-    cout << "Sent: SETCONF=SMUSourceTransientResponse[[CONFPARAM]]=1039, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUCurrent[[CONFPARAM]]=1.0");
-    cout << "Sent: SETCONF=SMUCurrent[[CONFPARAM]]=1.0, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUCurrentLevelRange[[CONFPARAM]]=1.0");
-    cout << "Sent: SETCONF=SMUCurrentLevelRange[[CONFPARAM]]=1.0, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUMeasurementSense[[CONFPARAM]]=1008");
-    cout << "Sent: SETCONF=SMUMeasurementSense[[CONFPARAM]]=1008, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUMeasurementApertureTime[[CONFPARAM]]=0.010");
-    cout << "Sent: SETCONF=SMUMeasurementApertureTime[[CONFPARAM]]=0.010, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUSourceAdvancedSourceDelay[[CONFPARAM]]=0.000100");
-    cout << "Sent: SETCONF=SMUSourceAdvancedSourceDelay[[CONFPARAM]]=0.000100, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUVoltage[[CONFPARAM]]=6");
-    cout << "Sent: SETCONF=SMUVoltage[[CONFPARAM]]=6, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUSourceAdvancedSequenceLoopCount[[CONFPARAM]]=571");
-    cout << "Sent: SETCONF=SMUSourceAdvancedSequenceLoopCount[[CONFPARAM]]=571, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUMeasurementAdvancedDCNoiseRejection[[CONFPARAM]]=1044");
-    cout << "Sent: SETCONF=SMUMeasurementAdvancedDCNoiseRejection[[CONFPARAM]]=1044, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=SMUSequenceName[[CONFPARAM]]=MySequence");
-    cout << "Sent: SETCONF=SMUSequenceName[[CONFPARAM]]=MySequence, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=Switch1ResourceName[[CONFPARAM]]=2526_1");
-    cout << "Sent: SETCONF=Switch1ResourceName[[CONFPARAM]]=2526_1, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=Switch1Topology[[CONFPARAM]]=2526/2-Wire 79x1 Mux");
-    cout << "Sent: SETCONF=Switch1Topology[[CONFPARAM]]=2526/2-Wire 79x1 Mux, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=Switch1ScanList[[CONFPARAM]]=ch70:75->com");
-    cout << "Sent: SETCONF=Switch1ScanList[[CONFPARAM]]=ch70:75->com, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=Switch2ResourceName[[CONFPARAM]]=SwitchBlock1Dev1");
-    cout << "Sent: SETCONF=Switch2ResourceName[[CONFPARAM]]=SwitchBlock1Dev1, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=Switch2Topology[[CONFPARAM]]=Configured Topology");
-    cout << "Sent: SETCONF=Switch2Topology[[CONFPARAM]]=Configured Topology, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=Switch2ScanList[[CONFPARAM]]=[c2->card1r2->c26], [c3->card1r3->c27]; [c6->card1r2->c26], [c7->card1r3->c27]; [c10->card1r2->c26], [c11->card1r3->c27]; [c14->card1r2->c26], [c15->card1r3->c27]; [c18->card1r2->c26], [c19->card1r3->c27]; [c22->card1r2->c26], [c23->card1r3->c27];");
-    cout << "Sent: SETCONF=Switch2ScanList[[CONFPARAM]]=[c2->card1r2->c26], [c3->card1r3->c27]; [c6->card1r2->c26], [c7->card1r3->c27]; [c10->card1r2->c26], [c11->card1r3->c27]; [c14->card1r2->c26], [c15->card1r3->c27]; [c18->card1r2->c26], [c19->card1r3->c27]; [c22->card1r2->c26], [c23->card1r3->c27];, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=DMMResourceName[[CONFPARAM]]=DMM");
-    cout << "Sent: SETCONF=DMMResourceName[[CONFPARAM]]=DMM, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=DMMFunction[[CONFPARAM]]=0");
-    cout << "Sent: SETCONF=DMMFunction[[CONFPARAM]]=0, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=DMMResolution[[CONFPARAM]]=0.1");
-    cout << "Sent: SETCONF=DMMResolution[[CONFPARAM]]=0.1, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=DMMRange[[CONFPARAM]]=0.1");
-    cout << "Sent: SETCONF=DMMRange[[CONFPARAM]]=0.1, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=DMMSampleCount[[CONFPARAM]]=0");
-    cout << "Sent: SETCONF=DMMSampleCount[[CONFPARAM]]=0, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=DMMApertureTimeUnit[[CONFPARAM]]=0");
-    cout << "Sent: SETCONF=DMMApertureTimeUnit[[CONFPARAM]]=0, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=DMMApertureTime[[CONFPARAM]]=0.010");
-    cout << "Sent: SETCONF=DMMApertureTime[[CONFPARAM]]=0.010, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=DMMNumberOfAverages[[CONFPARAM]]=1");
-    cout << "Sent: SETCONF=DMMNumberOfAverages[[CONFPARAM]]=1, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=DMMAutoZero[[CONFPARAM]]=0");
-    cout << "Sent: SETCONF=DMMAutoZero[[CONFPARAM]]=0, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=DMMADCCalibration[[CONFPARAM]]=0");
-    cout << "Sent: SETCONF=DMMADCCalibration[[CONFPARAM]]=0, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=DMMSettleTime[[CONFPARAM]]=0.0001");
-    cout << "Sent: SETCONF=DMMSettleTime[[CONFPARAM]]=0.0001, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=DMMControlAction[[CONFPARAM]]=0");
-    cout << "Sent: SETCONF=DMMControlAction[[CONFPARAM]]=0, Obtained: " << result << endl;
-
-    result = client.Query("SETCONF=ApplicationNumberOfWeldChannels[[CONFPARAM]]=6");
-    cout << "Sent: SETCONF=ApplicationNumberOfWeldChannels[[CONFPARAM]]=6, Obtained: " << result << endl;
-
-
-    result = client.Query("GETCONF=SMUResourceName");
-    cout << "Sent: GETCONF=SMUResourceName, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUChannels");
-    cout << "Sent: GETCONF=SMUChannels, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUSourceMode");
-    cout << "Sent: GETCONF=SMUSourceMode, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUOutputFunction");
-    cout << "Sent: GETCONF=SMUOutputFunction, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUSourceTransientResponse");
-    cout << "Sent: GETCONF=SMUSourceTransientResponse, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUCurrent");
-    cout << "Sent: GETCONF=SMUCurrent, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUCurrentLevelRange");
-    cout << "Sent: GETCONF=SMUCurrentLevelRange, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUMeasurementSense");
-    cout << "Sent: GETCONF=SMUMeasurementSense, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUMeasurementApertureTime");
-    cout << "Sent: GETCONF=SMUMeasurementApertureTime, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUSourceAdvancedSourceDelay");
-    cout << "Sent: GETCONF=SMUSourceAdvancedSourceDelay, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUVoltage");
-    cout << "Sent: GETCONF=SMUVoltage, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUSourceAdvancedSequenceLoopCount");
-    cout << "Sent: GETCONF=SMUSourceAdvancedSequenceLoopCount, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUMeasurementAdvancedDCNoiseRejection");
-    cout << "Sent: GETCONF=SMUMeasurementAdvancedDCNoiseRejection, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=SMUSequenceName");
-    cout << "Sent: GETCONF=SMUSequenceName, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=Switch1ResourceName");
-    cout << "Sent: GETCONF=Switch1ResourceName, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=Switch1Topology");
-    cout << "Sent: GETCONF=Switch1Topology, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=Switch1ScanList");
-    cout << "Sent: GETCONF=Switch1ScanList, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=Switch2ResourceName");
-    cout << "Sent: GETCONF=Switch2ResourceName, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=Switch2Topology");
-    cout << "Sent: GETCONF=Switch2Topology, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=Switch2ScanList");
-    cout << "Sent: GETCONF=Switch2ScanList, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=DMMResourceName");
-    cout << "Sent: GETCONF=DMMResourceName, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=DMMFunction");
-    cout << "Sent: GETCONF=DMMFunction, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=DMMResolution");
-    cout << "Sent: GETCONF=DMMResolution, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=DMMRange");
-    cout << "Sent: GETCONF=DMMRange, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=DMMSampleCount");
-    cout << "Sent: GETCONF=DMMSampleCount, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=DMMApertureTimeUnit");
-    cout << "Sent: GETCONF=DMMApertureTimeUnit, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=DMMApertureTime");
-    cout << "Sent: GETCONF=DMMApertureTime, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=DMMNumberOfAverages");
-    cout << "Sent: GETCONF=DMMNumberOfAverages, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=DMMAutoZero");
-    cout << "Sent: GETCONF=DMMAutoZero, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=DMMADCCalibration");
-    cout << "Sent: GETCONF=DMMADCCalibration, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=DMMSettleTime");
-    cout << "Sent: GETCONF=DMMSettleTime, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=DMMControlAction");
-    cout << "Sent: GETCONF=DMMControlAction, Obtained: " << result << endl;
-
-    result = client.Query("GETCONF=ApplicationNumberOfWeldChannels");
-    cout << "Sent: GETCONF=ApplicationNumberOfWeldChannels, Obtained: " << result << endl;
-
-    auto reader = client.Register("Heartbeat");
-    int count = 0;
-    ServerEvent event;
-    while (reader->Read(&event))
     {
-        cout << "Server Event: " << event.eventdata() << endl;
-        count += 1;
-        if (count == 5)
-        {
-            client.Invoke("Reset", "");
-        }
+        ClientContext ctx;
+        ConfigRequest configRequest;
+        ConfigAck configResponse;
+
+        configRequest.set_smuresourcename("SMU");
+		configRequest.set_smuchannels("0");
+		configRequest.set_smusourcemode(1021);
+		configRequest.set_smuoutputfunction(1007);
+		configRequest.set_smusourcetransientresponse(1039);
+		configRequest.set_smucurrent(1.0);
+		configRequest.set_smucurrentlevelrange(1.0);
+		configRequest.set_smumeasurementsense(1008);
+		configRequest.set_smumeasurementaperturetime(0.010);
+		configRequest.set_smusourceadvancedsourcedelay(0.000100);
+		configRequest.set_smuvoltage(6);
+		configRequest.set_smusourceadvancedsequenceloopcount(20);
+		configRequest.set_smumeasurementadvanceddcnoiserejection(1044);
+		configRequest.set_smusequencename("MySequence");
+		configRequest.set_scanlist("SCANALL");
+		configRequest.set_dmmresourcename("DMM");
+		configRequest.set_dmmfunction(0);
+		configRequest.set_dmmresolution(0.1);
+		configRequest.set_dmmrange(0.1);
+		configRequest.set_dmmsamplecount(0);
+		configRequest.set_dmmaperturetimeunit(0);
+		configRequest.set_dmmaperturetime(0.010);
+		configRequest.set_dmmnumberofaverages(1);
+		configRequest.set_dmmautozero(0);
+		configRequest.set_dmmadccalibration(0);
+		configRequest.set_dmmsettletime(0.0001);
+		configRequest.set_dmmcontrolaction(0);
+        configRequest.set_dmmvoltagefaultupperlimit(0.000050);
+        configRequest.set_applicationnumberofweldchannels(7);
+        cout << "Configuring measurement" << endl;
+        client.m_Stub->SendConfig(&ctx, configRequest, &configResponse);
+        cout << "Config sent: " << configResponse.acknowledge() << endl;
     }
-    Status status = reader->Finish();
-    cout << "Server notifications complete" << endl;
+
+        client.Invoke("Restore JSON", "");
+
+    {
+        auto reader = client.Register("Heartbeat");
+        int count = 0;
+        ServerEvent event;
+        while (reader->Read(&event))
+        {
+            cout << "Server Event: " << event.eventdata() << endl;
+            count += 1;
+            if (count == 5)
+            {
+                client.Invoke("Reset", "");
+            }
+        }
+        Status status = reader->Finish();
+        cout << "Server notifications complete" << endl;
+    }
+
+    {
+        ClientContext ctx;
+        ErrorOut error;
+        auto reader = client.m_Stub->StreamError(&ctx, ErrorRequest());
+        while (reader->Read(&error))
+        {
+            cout << "Server Error: " << error.errmessage() << ", " << error.errcode() << endl;
+        }
+        Status status = reader->Finish();
+        cout << "Server error test complete" << endl;
+    }
 
     cout << "Performing 4 probe measurement" << endl;
     {

@@ -44,7 +44,9 @@ typedef struct {
 
 typedef struct {
 	int32_t cnt; /* number of bytes that follow */
+#ifndef _PS_4
     int32_t padding;
+#endif
 	int8_t str[1]; /* cnt bytes */
 } LV1DArray, * LV1DArrayPtr, ** LV1DArrayHandle;
 
@@ -62,8 +64,9 @@ public:
     EventData(ServerContext* context);
 
 private:
-	mutex lockMutex;
-	condition_variable lock;
+    bool _isComplete;
+	mutex _lockMutex;
+	condition_variable _lock;
 
 public:
 	ServerContext* context;
@@ -88,6 +91,8 @@ public:
     Status Invoke(ServerContext* context, const InvokeRequest* request, InvokeResponse* response) override;
     Status Query(ServerContext* context, const QueryRequest* request, QueryResponse* response) override; 
     Status Register(ServerContext* context, const RegistrationRequest* request, ServerWriter<ServerEvent>* writer) override;
+    Status StreamError(ServerContext* context, const ErrorRequest* request, ServerWriter<ErrorOut>* writer) override;
+    Status SendConfig(ServerContext* context, const ConfigRequest* request, ConfigAck* response) override;
     Status PerformFourProbeMeasurement(ServerContext* context, const FourProbeRequest* request, FourProbeData* response) override;
     Status StreamFourProbeMeasurement(ServerContext* context, const FourProbeRequest* request, ServerWriter<FourProbeRaw>* writer) override;
 
@@ -104,6 +109,30 @@ public:
 
 public:
     int serverStartStatus;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+class StreamErrorData : public EventData
+{
+public:
+    StreamErrorData(ServerContext* context, const ErrorRequest* request, ServerWriter<ErrorOut>* writer);
+
+public:
+    const ErrorRequest* _request;
+    ServerWriter<ErrorOut>* _writer;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+class SendConfigData : public EventData
+{
+public:
+    SendConfigData(ServerContext* context, const ConfigRequest* request, ConfigAck* response);
+
+public:
+    const ConfigRequest* _request;
+    ConfigAck* _response;
 };
 
 //---------------------------------------------------------------------
@@ -186,13 +215,56 @@ struct LVErrorOutData
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
+struct LVConfigRequest
+{
+  LStrHandle SMUResourceName;
+  LStrHandle SMUChannels;
+  int32_t SMUSourceMode;
+  int32_t SMUOutputFunction;
+  int32_t SMUSourceTransientResponse;
+  float SMUCurrent;
+  float SMUCurrentLevelRange;
+  int32_t SMUMeasurementSense;
+  float SMUMeasurementApertureTime;
+  float SMUSourceAdvancedSourceDelay;
+  float SMUVoltage;
+  int32_t SMUSourceAdvancedSequenceLoopCount;
+  int32_t SMUMeasurementAdvancedDCNoiseRejection;
+  LStrHandle SMUSequenceName;
+  LStrHandle ScanList;
+  LStrHandle DMMResourceName;
+  int32_t DMMFunction;
+  float DMMResolution;
+  float DMMRange;
+  int32_t DMMSampleCount;
+  int32_t DMMApertureTimeUnit;
+  float DMMApertureTime;
+  int32_t DMMNumberOfAverages;
+  int32_t DMMAutoZero;
+  int32_t DMMADCCalibration;
+  float DMMSettleTime;
+  int32_t DMMControlAction;
+  float DMMVoltageFaultUpperLimit;
+  int32_t ApplicationNumberOfWeldChannels;
+};
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+struct LVConfigAck
+{
+  bool acknowledge;
+};
+
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 struct LVFourProbeRawData
 {
-  float posVoltage;
-  float posCurrent;
-  float negVoltage;
-  float negCurrent;
-  float impedance;
+  double posVoltage;
+  double posCurrent;
+  double negVoltage;
+  double negCurrent;
+  double impedance;
   LVErrorOutData error;
 };
 
