@@ -14,13 +14,11 @@ the project support Windows and Linux for both the client and server.
 To prepare for cmake + Microsoft Visual C++ compiler build
 - Install Visual Studio 2015, 2017, or 2019 (Visual C++ compiler will be used).
 - Install [Git](https://git-scm.com/).
-- Install gRPC for C++
 - Install [CMake](https://cmake.org/download/).
 - Install LabVIEW 2019
-- (Optional) Install [Ninja](https://ninja-build.org/) (`choco install ninja`)
 
 
-### Building
+### Building 64-bit
 - Launch "x64 Native Tools Command Prompt for Visual Studio"
 
 Download the repo and update submodules, this will pull the gRPC components and all dependencies
@@ -43,8 +41,35 @@ Build Release
 ```
 > mkdir build
 > cd build
-> cmake .
-> cmake --build . --Config Release
+> cmake ..
+> cmake --build . --config Release
+```
+
+### Building 32-bit
+- Launch "x86 Native Tools Command Prompt for Visual Studio"
+
+Download the repo and update submodules, this will pull the gRPC components and all dependencies
+
+```
+> git clone https://github.com/ni/labview-grpc-query-server.git labview-grpc-query-server
+> cd labview-grpc-query-server
+> git submodule update --init --recursive
+```
+
+Build Debug
+```
+> mkdir build
+> cd build
+> cmake -A Win32 ..
+> cmake --build .
+```
+
+Build Release
+```
+> mkdir build
+> cd build
+> cmake -A Win32 ..
+> cmake --build . --config Release
 ```
 
 ## Building on Linux

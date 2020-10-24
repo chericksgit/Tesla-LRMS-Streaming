@@ -11,6 +11,7 @@ using namespace measurementservice;
 //---------------------------------------------------------------------
 EventData::EventData(ServerContext* _context)
 {
+    _isComplete = false;
     context = _context;    
 }
 
@@ -18,16 +19,22 @@ EventData::EventData(ServerContext* _context)
 //---------------------------------------------------------------------
 void EventData::WaitForComplete()
 {    
-    std::unique_lock<std::mutex> lck(lockMutex);
-    lock.wait(lck);
+    std::unique_lock<std::mutex> lck(_lockMutex);
+    if (_isComplete)    
+    {
+        return;
+    }
+    _lock.wait(lck);
 }
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 void EventData::NotifyComplete()
 {    
-	std::unique_lock<std::mutex> lck(lockMutex);
-	lock.notify_all();
+    cout << "EventData::NotifyComplete" << endl;
+	std::unique_lock<std::mutex> lck(_lockMutex);
+    _isComplete = true;
+	_lock.notify_all();
 }
 
 //---------------------------------------------------------------------
@@ -36,6 +43,24 @@ ServerStartEventData::ServerStartEventData()
     : EventData(NULL)
 {
     serverStartStatus = 0;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+StreamErrorData::StreamErrorData(ServerContext* context, const ErrorRequest* request, ServerWriter<ErrorOut>* writer)
+    : EventData(context)
+{
+    _request = request;
+    _writer = writer;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+SendConfigData::SendConfigData(ServerContext* context, const ConfigRequest* request, ConfigAck* response)
+    : EventData(context)
+{
+    _request = request;
+    _response = response;    
 }
 
 //---------------------------------------------------------------------

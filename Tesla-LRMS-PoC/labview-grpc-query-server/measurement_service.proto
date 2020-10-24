@@ -38,11 +38,20 @@ service MeasurementService {
   
   rpc Query (QueryRequest) returns (QueryResponse) {}
   
+  rpc SendConfig (ConfigRequest) returns (ConfigAck) {}
+
   rpc PerformFourProbeMeasurement (FourProbeRequest) returns (FourProbeData) {}
 
   rpc StreamFourProbeMeasurement (FourProbeRequest) returns (stream FourProbeRaw) {}
 
+  rpc StreamError (ErrorRequest) returns (stream ErrorOut) {}
+
   rpc Register (RegistrationRequest) returns (stream ServerEvent) {}
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message ErrorRequest {
 }
 
 //---------------------------------------------------------------------
@@ -55,11 +64,11 @@ message ErrorOut {
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 message FourProbeRaw {
-  float posVoltage = 1;
-  float posCurrent = 3;
-  float negVoltage = 2;
-  float negCurrent = 4;
-  float impedance = 5;
+  double posVoltage = 1;
+  double posCurrent = 3;
+  double negVoltage = 2;
+  double negCurrent = 4;
+  double impedance = 5;
   ErrorOut error = 6;
 }
 
@@ -112,4 +121,42 @@ message ServerEvent {
   string eventData = 1;
   int32 serverId = 2;
   int32 status = 3;
+}
+
+message ConfigRequest {
+  string SMUResourceName                        = 1;
+  string SMUChannels                            = 2;
+  int32  SMUSourceMode                          = 3;
+  int32  SMUOutputFunction                      = 4;
+  int32  SMUSourceTransientResponse             = 5;
+  float  SMUCurrent                             = 6;
+  float  SMUCurrentLevelRange                   = 7;
+  int32  SMUMeasurementSense                    = 8;
+  float  SMUMeasurementApertureTime             = 9;
+  float  SMUSourceAdvancedSourceDelay           = 10;
+  float  SMUVoltage                             = 11;
+  int32  SMUSourceAdvancedSequenceLoopCount     = 12;
+  int32  SMUMeasurementAdvancedDCNoiseRejection = 13;
+  string SMUSequenceName                        = 14;
+  string ScanList                               = 15;
+  string DMMResourceName                        = 16;
+  int32  DMMFunction                            = 17;
+  float  DMMResolution                          = 18;
+  float  DMMRange                               = 19;
+  int32  DMMSampleCount                         = 20;
+  int32  DMMApertureTimeUnit                    = 21;
+  float  DMMApertureTime                        = 22;
+  int32  DMMNumberOfAverages                    = 23;
+  int32  DMMAutoZero                            = 24;
+  int32  DMMADCCalibration                      = 25;
+  float  DMMSettleTime                          = 26;
+  int32  DMMControlAction                       = 27;
+  float  DMMVoltageFaultUpperLimit              = 28;
+  int32  ApplicationNumberOfWeldChannels        = 29;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+message ConfigAck {
+  bool acknowledge = 1;
 }

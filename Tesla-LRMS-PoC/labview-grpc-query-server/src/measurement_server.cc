@@ -28,6 +28,17 @@ LabVIEWMeasurementServer::LabVIEWMeasurementServer(LabVIEWMeasurementServerInsta
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
+Status LabVIEWMeasurementServer::SendConfig(ServerContext* context, const ConfigRequest* request, ConfigAck* response)
+{	
+    auto data = new SendConfigData(context, request, response);
+    m_Instance->SendEvent("MeasurementService_SendConfig", data);
+    data->WaitForComplete();
+    delete data;
+    return Status::OK;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 Status LabVIEWMeasurementServer::PerformFourProbeMeasurement(ServerContext* context, const FourProbeRequest* request, FourProbeData* response)
 {	
     auto data = new FourProbeMeasurementData(context, request, response);
@@ -72,6 +83,17 @@ Status LabVIEWMeasurementServer::Query(ServerContext* context, const QueryReques
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
+Status LabVIEWMeasurementServer::StreamError(ServerContext* context, const ErrorRequest* request, ServerWriter<ErrorOut>* writer)
+{
+	auto data = new StreamErrorData(context, request, writer);	
+    m_Instance->SendEvent("MeasurementService_StreamError", data);
+    data->WaitForComplete();
+    delete data;
+    return Status::OK;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 Status LabVIEWMeasurementServer::Register(ServerContext* context, const RegistrationRequest* request, ServerWriter<ServerEvent>* writer)
 {
     auto data = new RegistrationRequestData(context, request, writer);
@@ -95,7 +117,15 @@ void LabVIEWMeasurementServerInstance::SendEvent(string name, EventData* data)
 	auto occurrence = m_RegisteredServerMethods.find(name);
 	if (occurrence != m_RegisteredServerMethods.end())
 	{
+		if (occurrence->second == 0)
+		{
+			cout << "invalid occurrence reference" << endl;
+		}
 		OccurServerEvent(occurrence->second, data);
+	}
+	else
+	{
+		cout << "Event NOT Registered: " << name << endl;
 	}
 }
 
@@ -187,6 +217,7 @@ void LabVIEWMeasurementServerInstance::RunServer(
 	}
 	else
 	{
+		cout << "Server failed to start!" << endl;
 		serverStarted->serverStartStatus = -1;
 		serverStarted->NotifyComplete();
 	}

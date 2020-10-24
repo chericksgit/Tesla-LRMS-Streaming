@@ -5,12 +5,17 @@ cmake_minimum_required(VERSION 3.5.1)
 if(NOT MSVC)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 else()
-cmake_policy(SET CMP0091 NEW)
+  cmake_policy(SET CMP0091 NEW)
   add_definitions(-D_WIN32_WINNT=0x600)
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
 
+project(check_for_sizeof_void_p C)
+message( ${CMAKE_SIZEOF_VOID_P} )
+
 project(labview-query-server C CXX)
+
+add_definitions(-D_PS_${CMAKE_SIZEOF_VOID_P})
 
 find_package(Threads REQUIRED)
 

@@ -77,6 +77,10 @@ static void InitCallbacks()
 void OccurServerEvent(LVUserEventRef event, EventData* data)
 {
 	auto error = PostLVUserEvent(event, &data);
+	if (error != 0)
+	{
+		cout << "Failure posting user event: " << error << endl;
+	}
 }
 
 //---------------------------------------------------------------------
@@ -138,6 +142,53 @@ LIBRARY_EXPORT int32_t RegisterServerEvent(const char* name, LVUserEventRef* ite
 {
 	LabVIEWMeasurementServerInstance* server = *(LabVIEWMeasurementServerInstance**)id;
 	server->RegisterEvent(name, *item);
+	return 0;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+LIBRARY_EXPORT int32_t SetConfigGetRequest(LVgRPCid id, LVConfigRequest* request)
+{	
+	SendConfigData* data = *(SendConfigData**)id;
+	SetLVString(&request->SMUResourceName, data->_request->smuresourcename());
+  	SetLVString(&request->SMUChannels, data->_request->smuchannels());
+  	request->SMUSourceMode = data->_request->smusourcemode();
+	request->SMUOutputFunction = data->_request->smuoutputfunction();
+	request->SMUSourceTransientResponse = data->_request->smusourcetransientresponse();
+	request->SMUCurrent = data->_request->smucurrent();
+	request->SMUCurrentLevelRange = data->_request->smucurrentlevelrange();
+	request->SMUMeasurementSense = data->_request->smumeasurementsense();
+	request->SMUMeasurementApertureTime = data->_request->smumeasurementaperturetime();
+	request->SMUSourceAdvancedSourceDelay = data->_request->smusourceadvancedsourcedelay();
+	request->SMUVoltage = data->_request->smuvoltage();
+	request->SMUSourceAdvancedSequenceLoopCount = data->_request->smusourceadvancedsequenceloopcount();
+	request->SMUMeasurementAdvancedDCNoiseRejection = data->_request->smumeasurementadvanceddcnoiserejection();
+  	SetLVString(&request->SMUSequenceName, data->_request->smusequencename());
+  	SetLVString(&request->ScanList, data->_request->scanlist());
+  	SetLVString(&request->DMMResourceName, data->_request->dmmresourcename());
+	request->DMMFunction = data->_request->dmmfunction();
+	request->DMMResolution = data->_request->dmmresolution();
+	request->DMMRange = data->_request->dmmrange();
+	request->DMMSampleCount = data->_request->dmmsamplecount();
+	request->DMMApertureTimeUnit = data->_request->dmmaperturetimeunit();
+	request->DMMApertureTime = data->_request->dmmaperturetime();
+	request->DMMNumberOfAverages = data->_request->dmmnumberofaverages();
+	request->DMMAutoZero = data->_request->dmmautozero();
+	request->DMMADCCalibration = data->_request->dmmadccalibration();
+	request->DMMSettleTime = data->_request->dmmsettletime();
+	request->DMMControlAction = data->_request->dmmcontrolaction();
+	request->DMMVoltageFaultUpperLimit = data->_request->dmmvoltagefaultupperlimit();
+	request->ApplicationNumberOfWeldChannels = data->_request->applicationnumberofweldchannels();
+	return 0;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+LIBRARY_EXPORT int32_t SetConfigSetResponse(LVgRPCid id, LVConfigAck* response)
+{	
+	SendConfigData* data = *(SendConfigData**)id;
+	data->_response->set_acknowledge(response->acknowledge);
+	data->NotifyComplete();
 	return 0;
 }
 
@@ -255,9 +306,21 @@ LIBRARY_EXPORT int32_t NotifyServerEvent(LVgRPCid id, LVServerEvent* event)
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
+LIBRARY_EXPORT int32_t NotifyError(LVgRPCid id, LVErrorOutData* error)
+{
+	auto data = *(StreamErrorData**)id;
+    measurementservice::ErrorOut e;
+	e.set_errcode(error->errCode);
+	e.set_errmessage(GetLVString(error->errMessage));
+    data->_writer->Write(e);
+    return 0;
+}
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 LIBRARY_EXPORT int32_t CloseServerEvent(LVgRPCid id)
 {
-	RegistrationRequestData* data = *(RegistrationRequestData**)id;
+	EventData* data = *(EventData**)id;
     data->NotifyComplete();
     return 0;
 }

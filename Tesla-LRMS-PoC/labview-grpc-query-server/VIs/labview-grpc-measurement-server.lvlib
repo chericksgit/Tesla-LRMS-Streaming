@@ -28,6 +28,8 @@
 		<Item Name="MeasurementServer_RegisterRequest.ctl" Type="VI" URL="../MeasurementServer_RegisterRequest.ctl"/>
 		<Item Name="MeasurementServer_ServerRefs.ctl" Type="VI" URL="../MeasurementServer_ServerRefs.ctl"/>
 		<Item Name="MeasurementServer_StartServer.vi" Type="VI" URL="../MeasurementServer_StartServer.vi"/>
+		<Item Name="MeasurementServer_AddSendConfigEvent.vi" Type="VI" URL="../MeasurementServer_AddSendConfigEvent.vi"/>
+		<Item Name="MeasurementServer_AddStreamErrorEvent.vi" Type="VI" URL="../MeasurementServer_AddStreamErrorEvent.vi"/>
 	</Item>
 	<Item Name="MeasurementServer_ErrorOutData.ctl" Type="VI" URL="../MeasurementServer_ErrorOutData.ctl"/>
 	<Item Name="MeasurementServer_Event_Close.vi" Type="VI" URL="../MeasurementServer_Event_Close.vi"/>
@@ -45,4 +47,8 @@
 	<Item Name="MeasurementServer_Start.vi" Type="VI" URL="../MeasurementServer_Start.vi"/>
 	<Item Name="MeasurementServer_Stop.vi" Type="VI" URL="../MeasurementServer_Stop.vi"/>
 	<Item Name="MeasurementServer_FourProbeMeasurement_WriteValue.vi" Type="VI" URL="../MeasurementServer_FourProbeMeasurement_WriteValue.vi"/>
+	<Item Name="MeasurementServer_ConfigRequest.ctl" Type="VI" URL="../MeasurementServer_ConfigRequest.ctl"/>
+	<Item Name="MeasurementServer_GetRequest_Config.vi" Type="VI" URL="../MeasurementServer_GetRequest_Config.vi"/>
+	<Item Name="MeasurementServer_SetResponse_Config.vi" Type="VI" URL="../MeasurementServer_SetResponse_Config.vi"/>
+	<Item Name="MeasurementServer_Stream_Error.vi" Type="VI" URL="../MeasurementServer_Stream_Error.vi"/>
 </Library>
