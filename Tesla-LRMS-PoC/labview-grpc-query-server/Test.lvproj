@@ -93,9 +93,11 @@ AddOutputFilter chunkFilter
 		<Property Name="target.webservices.ValidTimestampWindow" Type="Int">15</Property>
 		<Item Name="Acquisition Finished.lvlib" Type="Library" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/Acquisition Finished.lvlib"/>
 		<Item Name="ExampleMeasurementServer.vi" Type="VI" URL="../ExampleMeasurementServer.vi"/>
+		<Item Name="Four Probe Asynchronous.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/Four Probe Asynchronous.vi"/>
 		<Item Name="jsontestfile.json" Type="Document" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/jsontestfile.json"/>
 		<Item Name="liblabview_measurement_server.so" Type="Document" URL="../../liblabview_measurement_server.so"/>
-		<Item Name="Update JSON Config Req.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/Update JSON Config Req.vi"/>
+		<Item Name="Send Error Stream.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/Send Error Stream.vi"/>
+		<Item Name="Stream Four Probe Asynchronous.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/Stream Four Probe Asynchronous.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="instr.lib" Type="Folder">
 				<Item Name="niDCPower Abort.vi" Type="VI" URL="/&lt;instrlib&gt;/niDCPower/nidcpower.llb/niDCPower Abort.vi"/>
@@ -168,6 +170,7 @@ AddOutputFilter chunkFilter
 				<Item Name="niSwitch Wait For Debounce.vi" Type="VI" URL="/&lt;instrlib&gt;/niSwitch/niSwitch.llb/niSwitch Wait For Debounce.vi"/>
 			</Item>
 			<Item Name="vi.lib" Type="Folder">
+				<Item Name="Delimited String to 1D String Array.vi" Type="VI" URL="/&lt;vilib&gt;/AdvancedString/Delimited String to 1D String Array.vi"/>
 				<Item Name="Error Cluster From Error Code.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Error Cluster From Error Code.vi"/>
 				<Item Name="Trim Whitespace.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Trim Whitespace.vi"/>
 				<Item Name="whitespace.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/whitespace.ctl"/>
@@ -175,6 +178,7 @@ AddOutputFilter chunkFilter
 			<Item Name="Check for Faults.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/Check for Faults.vi"/>
 			<Item Name="Check if Measurement Finished" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/Check if Measurement Finished"/>
 			<Item Name="Check if Measurement Ready.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/Check if Measurement Ready.vi"/>
+			<Item Name="Global Operations.ctl" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/Global Operations.ctl"/>
 			<Item Name="JSONCluster.ctl" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/JSONCluster.ctl"/>
 			<Item Name="JSONDefaults.ctl" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/JSONDefaults.ctl"/>
 			<Item Name="labview-grpc-measurement-server.lvlib" Type="Library" URL="../VIs/labview-grpc-measurement-server.lvlib"/>
@@ -189,15 +193,18 @@ AddOutputFilter chunkFilter
 			<Item Name="niswitch_32.dll" Type="Document" URL="niswitch_32.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 			</Item>
+			<Item Name="RESETALL.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/RESETALL.vi"/>
+			<Item Name="ScanListParse.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/ScanListParse.vi"/>
 			<Item Name="Set JSON Value.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/Set JSON Value.vi"/>
 			<Item Name="SMU Switch Handshaking - LV code improvements - Streaming.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/SMU Switch Handshaking - LV code improvements - Streaming.vi"/>
 			<Item Name="SMU Switch Handshaking - LV code improvements.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/SMU Switch Handshaking - LV code improvements.vi"/>
 			<Item Name="SupportVIs.lvlib" Type="Library" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/SupportVIs.lvlib"/>
+			<Item Name="Update JSON Config Req.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/Update JSON Config Req.vi"/>
 			<Item Name="Update JSON Config.vi" Type="VI" URL="../../Labview-lrms-proof-of-concept/Tesla-LRMS-PoC/Update JSON Config.vi"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build">
 			<Item Name="My Package" Type="{CED73189-3D7D-4B2F-B6C9-EA03FBC59E14}">
-				<Property Name="IPK_lastBuiltPackage" Type="Str">lrms_1.0.0-5_x64.ipk</Property>
+				<Property Name="IPK_lastBuiltPackage" Type="Str">lrms_1.0.0-20_x64.ipk</Property>
 				<Property Name="IPK_startup.Restart" Type="Bool">true</Property>
 				<Property Name="IPK_startup.Target.Child" Type="Str">{839E8441-EC26-4B56-A2D7-1E5B7B51B19B}</Property>
 				<Property Name="IPK_startup.Target.Destination" Type="Str">root_0</Property>
@@ -205,7 +212,7 @@ AddOutputFilter chunkFilter
 				<Property Name="PKG_actions.Count" Type="Int">0</Property>
 				<Property Name="PKG_autoIncrementBuild" Type="Bool">true</Property>
 				<Property Name="PKG_autoSelectDeps" Type="Bool">false</Property>
-				<Property Name="PKG_buildNumber" Type="Int">6</Property>
+				<Property Name="PKG_buildNumber" Type="Int">21</Property>
 				<Property Name="PKG_buildSpecName" Type="Str">My Package</Property>
 				<Property Name="PKG_dependencies.Count" Type="Int">0</Property>
 				<Property Name="PKG_description" Type="Str"></Property>
@@ -252,7 +259,7 @@ AddOutputFilter chunkFilter
 				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
 				<Property Name="Bld_previewCacheID" Type="Str">{B28F1F9B-FB2E-48BA-8B56-BF1BA3C722D2}</Property>
 				<Property Name="Bld_targetDestDir" Type="Path">/home/lvuser/natinst/bin</Property>
-				<Property Name="Bld_version.build" Type="Int">7</Property>
+				<Property Name="Bld_version.build" Type="Int">30</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
 				<Property Name="Destination[0].destName" Type="Str">startup.rtexe</Property>
 				<Property Name="Destination[0].path" Type="Path">/home/lvuser/natinst/bin/startup.rtexe</Property>
@@ -263,13 +270,21 @@ AddOutputFilter chunkFilter
 				<Property Name="Destination[1].path" Type="Path">/home/lvuser/natinst/bin/data</Property>
 				<Property Name="Destination[1].path.type" Type="Str">&lt;none&gt;</Property>
 				<Property Name="DestinationCount" Type="Int">2</Property>
-				<Property Name="Source[0].itemID" Type="Str">{389FE3F5-5CCB-4108-95A0-EFD73A2CC005}</Property>
+				<Property Name="Source[0].itemID" Type="Str">{EE3B3D91-856D-4787-B154-BD4B2854D60E}</Property>
 				<Property Name="Source[0].type" Type="Str">Container</Property>
 				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
 				<Property Name="Source[1].itemID" Type="Ref">/NI-PXIe-8861-031E42AB/ExampleMeasurementServer.vi</Property>
 				<Property Name="Source[1].sourceInclusion" Type="Str">TopLevel</Property>
 				<Property Name="Source[1].type" Type="Str">VI</Property>
-				<Property Name="SourceCount" Type="Int">2</Property>
+				<Property Name="Source[2].destinationIndex" Type="Int">1</Property>
+				<Property Name="Source[2].itemID" Type="Ref">/NI-PXIe-8861-031E42AB/Four Probe Asynchronous.vi</Property>
+				<Property Name="Source[2].sourceInclusion" Type="Str">Include</Property>
+				<Property Name="Source[2].type" Type="Str">VI</Property>
+				<Property Name="Source[3].destinationIndex" Type="Int">1</Property>
+				<Property Name="Source[3].itemID" Type="Ref">/NI-PXIe-8861-031E42AB/Stream Four Probe Asynchronous.vi</Property>
+				<Property Name="Source[3].sourceInclusion" Type="Str">Include</Property>
+				<Property Name="Source[3].type" Type="Str">VI</Property>
+				<Property Name="SourceCount" Type="Int">4</Property>
 				<Property Name="TgtF_companyName" Type="Str">National Instruments</Property>
 				<Property Name="TgtF_fileDescription" Type="Str">My Real-Time Application</Property>
 				<Property Name="TgtF_internalName" Type="Str">My Real-Time Application</Property>
