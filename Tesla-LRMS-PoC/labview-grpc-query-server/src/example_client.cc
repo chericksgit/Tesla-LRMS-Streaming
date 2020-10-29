@@ -235,7 +235,7 @@ int main(int argc, char **argv)
         cout << "Config sent: " << configResponse.acknowledge() << endl;
     }
 
-        client.Invoke("Restore JSON", "");
+//        client.Invoke("Restore JSON", "");
 
     {
         auto reader = client.Register("Heartbeat");
@@ -254,17 +254,17 @@ int main(int argc, char **argv)
         cout << "Server notifications complete" << endl;
     }
 
-    {
-        ClientContext ctx;
-        ErrorOut error;
-        auto reader = client.m_Stub->StreamError(&ctx, ErrorRequest());
-        while (reader->Read(&error))
-        {
-            cout << "Server Error: " << error.errmessage() << ", " << error.errcode() << endl;
-        }
-        Status status = reader->Finish();
-        cout << "Server error test complete" << endl;
-    }
+//    {
+//        ClientContext ctx;
+//        ErrorOut error;
+//        auto reader = client.m_Stub->StreamError(&ctx, ErrorRequest());
+//        while (reader->Read(&error))
+//        {
+//            cout << "Server Error: " << error.errmessage() << ", " << error.errcode() << endl;
+//        }
+//        Status status = reader->Finish();
+//        cout << "Server error test complete" << endl;
+//    }
 
     cout << "Performing 4 probe measurement" << endl;
     {
@@ -300,7 +300,7 @@ int main(int argc, char **argv)
         cout << "First Four Probe Results: "  << endl;
         while (measurementReader->Read(&data))
         {
-            if (++x <= 10)
+            if (++x <= 21)
             {
                 cout << "  -V:" << data.negvoltage() << " +V:" << data.posvoltage() << " -C" << data.negcurrent() << " +C" << data.poscurrent() << " Z:" << data.impedance() << endl;
             }

@@ -10,13 +10,15 @@
     "SMUMeasurementApertureTime": 0.010,
     "SMUSourceAdvancedSourceDelay": 0.000100,
     "SMUVoltage": 6,
-    "SMUSourceAdvancedSequenceLoopCount": 700,
+    "SMUSourceAdvancedSequenceLoopCount": 571,
     "SMUMeasurementAdvancedDCNoiseRejection": 1044,
 	"SMUSequenceName": "MySequence",
 	"SMUStep1_Source_DCCurrent_CurrentLevel": 1150009,
 	"SMUStep2_Measurement_ApertureTime": 1150058,
 	"SMUStep3_Source_Advanced_SourceDelay": 1150051,
 	"SMUSequenceNumberOfSteps": 3,
+	
+	"ScanList": "SCANALL",
 		
 	"Switch1ResourceName": "2526_1",
 	"Switch1Topology": "2526/2-Wire 79x1 Mux",
@@ -40,5 +42,5 @@
 	"DMMControlAction": 0,
 	"DMMVoltageFaultUpperLimit": 0.000050,
 	
-	"ApplicationNumberOfWeldChannels": 7
+	"ApplicationNumberOfWeldChannels": 6
 }
